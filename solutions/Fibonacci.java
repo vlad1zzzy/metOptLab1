@@ -53,6 +53,9 @@ public class Fibonacci {
         } else {
             b = x2;
         }
+
+        //System.out.println(Lab1.toJson(result));
+
         return (a + b) / 2;
     }
 }
