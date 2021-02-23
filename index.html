@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>Lab</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="page">
-    <div class="container">
-
-    </div>
+    <form id="form" method="post">
+        <label for="l">Choose l</label>
+        <input type="text" maxlength="10" id="l" class="accuracy"/>
+        <label for="eps">and eps</label>
+        <input  type="text" maxlength="10" id="eps" class="accuracy"/>
+        <button type="button">Submit</button>
+    </form>
+    <div class="datatable"></div>
 </div>
-
-<script src="main.js">
-
-</script>
+<script src="main.js"></script>
 </body>
 </html>

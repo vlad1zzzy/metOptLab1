@@ -10,7 +10,7 @@ const fibs = [
     433494437, 701408733, 1134903170, 1836311903
 ];
 
-const fibStat = []
+const stats = []
 
 function fibonacci(a, b, l, eps) {
     let anchor = (b - a) / l;
@@ -30,12 +30,7 @@ function fibonacci(a, b, l, eps) {
     for (let k = 1; k < n - 1; k++) {
         let f1 = func(x1);
         let f2 = func(x2);
-        //result.add(new Stat(k, a, b, b - a, x1, x2, f1, f2));
-        fibStat.push({
-            a, b,
-            "b - a" : b - a,
-            x1, x2, f1, f2,
-        })
+        stats.push([k, ...[a, b, b - a, x1, x2, f1, f2].map(el => el.toFixed(10))])
         if (f1 > f2) {
             a = x1;
             x1 = x2;
@@ -55,4 +50,60 @@ function fibonacci(a, b, l, eps) {
     return (a + b) / 2;
 }
 
-console.log(fibonacci(0.5, 4, 0.000001, 0.1))
+//console.log(fibonacci(0.5, 4, 0.000001, 0.001))
+
+const container = document.querySelector(".datatable")
+const tableHeaders = ["k", "a", "b", "b - a", "x1", "x2", "f1", "f2"]
+
+const createTable = () => {
+    let table = document.createElement('table')
+
+    let tableHead = document.createElement('thead')
+    tableHead.className = 'tableHead'
+
+    let tableHeaderRow = document.createElement('tr')
+    tableHeaderRow.className = 'tableHeaderRow'
+
+    tableHeaders.forEach(header => {
+        let scoreHeader = document.createElement('th')
+        scoreHeader.innerText = header
+        tableHeaderRow.append(scoreHeader)
+    })
+    tableHead.append(tableHeaderRow)
+    table.append(tableHead)
+
+    let tableBody = document.createElement('tbody')
+    tableBody.className = "table-Body"
+
+    stats.forEach(stat => {
+        let row = document.createElement('tr')
+        stat.forEach(cur => {
+            let el = document.createElement("td")
+            el.innerHTML = cur
+            row.appendChild(el)
+        })
+        tableBody.appendChild(row)
+    })
+    table.append(tableBody)
+    container.append(table)
+}
+
+const btn = document.querySelector("button")
+btn.addEventListener("click", function () {
+    if (container.firstChild) {
+        container.removeChild(container.firstChild)
+    }
+
+    const lInput = document.getElementById("l")
+    const l = lInput.value
+    const epsInput = document.getElementById("eps")
+    const eps = epsInput.value
+    if (isNaN(l) || isNaN(eps) || l > 1 || eps > 1) {
+        lInput.value = ""
+        epsInput.value = ""
+        alert("Invalid l or eps")
+    } else {
+        fibonacci(0.5, 4, l, eps)
+        createTable()
+    }
+})
