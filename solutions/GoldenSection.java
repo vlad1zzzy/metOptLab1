@@ -5,28 +5,28 @@ import static java.lang.Math.sqrt;
 import static solutions.Lab1.func;
 
 public class GoldenSection {
-    static double findMin(double l, double r, double eps) {
+    static double findMin(double a, double b, final double eps) {
         final double phi = (1 + sqrt(5)) / 2;
         final double resphi = 2 - phi;
-        double x1 = l + resphi * (r - l);
-        double x2 = r - resphi * (r - l);
+        double x1 = a + resphi * (b - a);
+        double x2 = b - resphi * (b - a);
         double f1 = func(x1);
         double f2 = func(x2);
         do {
             if (f1 < f2) {
-                r = x2;
+                b = x2;
                 x2 = x1;
                 f2 = f1;
-                x1 = l + resphi * (r - l);
+                x1 = a + resphi * (b - a);
                 f1 = func(x1);
             } else {
-                l = x1;
+                a = x1;
                 x1 = x2;
                 f1 = f2;
-                x2 = r - resphi * (r - l);
+                x2 = b - resphi * (b - a);
                 f2 = func(x2);
             }
-        } while (abs(r - l) > eps);
+        } while (abs(b - a) > eps);
         return (x1 + x2) / 2;
     }
 }
