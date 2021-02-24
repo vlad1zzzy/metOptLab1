@@ -1,14 +1,14 @@
 package solutions;
 
 public class Stat {
-    public final int k;
-    public  final double a;
-    public  final double b;
-    public  final double diff;
-    public  final double x1;
-    public  final double x2;
-    public  final double f1;
-    public  final double f2;
+    private final int k;
+    private  final double a;
+    private  final double b;
+    private  final double diff;
+    private  final double x1;
+    private  final double x2;
+    private  final double f1;
+    private  final double f2;
 
     public Stat(int k, double a, double b, double diff, double x1, double x2, double f1, double f2) {
         this.k = k;
