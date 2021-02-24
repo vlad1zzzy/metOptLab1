@@ -1,5 +1,6 @@
 import {fibonacci} from "./fibonacci.js";
 import {golden} from "./golden.js";
+import {addData, removeData} from "./intervals.js";
 
 export {stats, func}
 const stats = []
@@ -30,6 +31,11 @@ methods.forEach((method) => {
         chosenFunctionName = e.target.id
         chosenFunction = functions[chosenFunctionName];
         method.classList.add("active")
+
+        while (dataTable.firstChild) {
+            dataTable.removeChild(dataTable.firstChild)
+            stats.length = 0
+        }
     })
 })
 
@@ -60,9 +66,11 @@ btn.addEventListener("click", function () {
     } else {
         //fibonacci(0.5, 4, Math.pow(10, -l), Math.pow(10, -4))
         const res = chosenFunction(a, b, Math.pow(10, -l), Math.pow(10, -4))
+        removeData()
         createTable()
         dotMin.innerText = res;
         funcMin.innerText = func(res)
+        addData()
     }
 
     function notValidInput(str) {

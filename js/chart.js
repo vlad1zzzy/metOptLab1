@@ -14,13 +14,15 @@ let data = {
 
 Chart.plugins.register({
     beforeInit: function (chart) {
-        let data = chart.config.data;
-        for (let i = 0; i < data.datasets.length; i++) {
-            for (let j = 0; j < data.labels.length; j++) {
-                let fct = data.datasets[i].function,
-                    x = data.labels[j],
-                    y = fct(x);
-                data.datasets[i].data.push(y);
+        if (chart.options.isMain) {
+            let data = chart.config.data;
+            for (let i = 0; i < data.datasets.length; i++) {
+                for (let j = 0; j < data.labels.length; j++) {
+                    let fct = data.datasets[i].function,
+                        x = data.labels[j],
+                        y = fct(x);
+                    data.datasets[i].data.push(y);
+                }
             }
         }
     }
@@ -30,6 +32,7 @@ const myChart = new Chart(ctx, {
     type: 'line',
     data: data,
     options: {
+        isMain: true,
         scales: {
             yAxes: [{
                 ticks: {

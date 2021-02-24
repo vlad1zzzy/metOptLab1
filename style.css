@@ -49,6 +49,7 @@ h1, h2, h3 {
 }
 
 .methods li {
+    line-height: 2rem;
     border-radius: 1rem;
     text-align: center;
     margin: 0 1rem;
@@ -149,14 +150,6 @@ form {
     width: 100%;
     text-align: center;
     border-collapse: collapse;
-}
-
-.datatable .caption {
-    background-color: var(--datatable-color);
-    font-size: 0.9rem;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    padding: 0.25rem 0.5rem;
 }
 
 .datatable td, .datatable th {
