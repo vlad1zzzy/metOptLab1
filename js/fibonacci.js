@@ -20,7 +20,7 @@ function fibonacci(a, b, l, eps) {
         }
     }
     if (n === -1) {
-        console.log("Error")
+        alert("Error")
         return -1;
     }
     let x1 = a + (fibs[n - 2] / fibs[n]) * (b - a);

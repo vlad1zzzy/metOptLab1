@@ -20,8 +20,23 @@ html {
     margin: 0 auto;
 }
 
-.accuracy {
-    margin: 1rem auto;
+.page {
+}
+
+h1, h2, h3 {
+    margin: 0.3rem auto;
+    text-align: center;
+}
+
+.info > div {
+    font-style: italic;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
 }
 
 /* datatable */
@@ -43,6 +58,7 @@ html {
     border: 1px solid var(--datatable-color);
     padding: 0.5em;
     font-size: 0.8rem;
+    overflow: hidden;
 }
 
 .datatable tbody tr:nth-child(2n-1) {

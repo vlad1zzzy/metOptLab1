@@ -8,12 +8,31 @@
 <body>
 
 <div class="page">
+    <h1>Методы оптимизации</h1>
+    <h2>Лабораторная работа №1</h2>
+    <div class="info">
+        <div class="name">Алгоритмы одномерной минимизации функции</div>
+        <div class="variant">Вариант : <strong>№4</strong></div>
+        <div class="function">Данная функция : f(x) = x - ln(x)</div>
+        <div class="interval">Данный интервал : [ 0.5 ; 4 ]</div>
+    </div>
+
+    <div class="methods">
+        <ul>
+            <li>Метод дихотомии</li>
+            <li>Метод золотого сечения</li>
+            <li>Метод Фибоначчи</li>
+            <li>Метод парабол</li>
+            <li>Комбинированный метод Брента</li>
+        </ul>
+    </div>
+
     <form id="form" method="post">
-        <label for="l">Choose l</label>
-        <input type="text" maxlength="10" id="l" class="accuracy"/>
-        <label for="eps">and eps</label>
-        <input  type="text" maxlength="10" id="eps" class="accuracy"/>
-        <button type="button">Submit</button>
+        <label for="l">Choose accuracy = 10^-</label>
+        <!--<input type="text" maxlength="1" id="l" class="accuracy"/>-->
+        <span id="l-value"></span>
+        <input type="range" min="1" max="8" value="4" class="slider" id="l">
+        <button type="button">Расчитать</button>
     </form>
     <div class="datatable"></div>
 </div>
