@@ -17,8 +17,8 @@ public class GoldenSection {
         double f2 = func(x2);
         int k = 1;
         do {
-                System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
-                        k, a, b, b - a, x1, x2, f1, f2);
+            System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
+                    k, a, b, b - a, x1, x2, f1, f2);
             if (f1 < f2) {
                 b = x2;
                 x2 = x1;
