@@ -1,15 +1,18 @@
 import {fibonacci} from "./fibonacci.js";
+import {golden} from "./golden.js";
 
 export {stats, func}
 const stats = []
 
+const a = 0.5
+const b = 4.0
 const func = function (x) {
     return x - Math.log(x);
 }
 
 const functions = {
     //dichotomy: dichotomy,
-    //golden: golden,
+    golden: golden,
     fibonacci: fibonacci,
     //parabola: parabola,
     //brent: brent,
@@ -40,6 +43,8 @@ lSlider.oninput = function () {
 }
 
 const btn = document.querySelector("button")
+const funcMin = document.getElementById("func-min")
+const dotMin = document.getElementById("dot-min")
 btn.addEventListener("click", function () {
     while (dataTable.firstChild) {
         dataTable.removeChild(dataTable.firstChild)
@@ -54,8 +59,10 @@ btn.addEventListener("click", function () {
         alert("No such method yet")
     } else {
         //fibonacci(0.5, 4, Math.pow(10, -l), Math.pow(10, -4))
-        chosenFunction(0.5, 4, Math.pow(10, -l), Math.pow(10, -4))
+        const res = chosenFunction(a, b, Math.pow(10, -l), Math.pow(10, -4))
         createTable()
+        dotMin.innerText = res;
+        funcMin.innerText = func(res)
     }
 
     function notValidInput(str) {

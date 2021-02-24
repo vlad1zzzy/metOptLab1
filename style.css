@@ -49,11 +49,11 @@ h1, h2, h3 {
 }
 
 .methods li {
-    border: gray 2px solid;
     border-radius: 1rem;
     text-align: center;
     margin: 0 1rem;
     padding: 0 1rem;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
 }
 
 .methods .active {
@@ -66,6 +66,7 @@ h1, h2, h3 {
     cursor: pointer;
     background-color: rgba(75, 192, 192, 1);
     color: bisque;
+    transform: translateY(-5px);
 }
 
 /* form */
@@ -167,4 +168,13 @@ form {
 
 .datatable tbody tr:nth-child(2n-1) {
     background-color: var(--datatable-dark-cell-color);
+}
+
+.result {
+    margin: 1rem auto;
+}
+
+.result > div {
+    display: flex;
+    justify-content: center;
 }

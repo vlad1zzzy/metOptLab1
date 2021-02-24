@@ -14,7 +14,7 @@ public class Fibonacci {
             433494437, 701408733, 1134903170, 1836311903
     };
 
-    public static double findMin(double a, double b, double l,final double eps) {
+    public static double findMin(double a, double b, double l, final double eps) {
         double anchor = (b - a) / l;
         int n = -1;
         for (int i = 2; i < fibs.length; i++) {
@@ -34,9 +34,9 @@ public class Fibonacci {
         for (int k = 1; k < n - 1; k++) {
             double f1 = Lab1.func(x1);
             double f2 = Lab1.func(x2);
-           // System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
-           //         k, a, b, b - a, x1, x2, f1, f2);
-            result.add(new Stat( k, a, b, b - a, x1, x2, f1, f2));
+            // System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
+            //         k, a, b, b - a, x1, x2, f1, f2);
+            result.add(new Stat(k, a, b, b - a, x1, x2, f1, f2));
             if (f1 > f2) {
                 a = x1;
                 x1 = x2;

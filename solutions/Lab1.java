@@ -5,7 +5,7 @@ import java.util.List;
 public class Lab1 {
     public static void main(String[] args) {
         double fib = Fibonacci.findMin(0.5, 4, 0.000001, 0.00001);
-        double gol = GoldenSection.findMin(0.5, 4, 0.00001);
+        double gol = GoldenSection.findMin(0.5, 4, 0.1);
         double minFib = func(fib);
         double minGol = func(gol);
         printData("Fibonacci", fib, minFib);
@@ -13,7 +13,7 @@ public class Lab1 {
     }
 
     public static void printData(final String methodName, final double min, final double value) {
-        System.out.printf("method: %-15s min: %10.9f value: %10.9f%n",methodName,min,value);
+        System.out.printf("method: %-15s min: %10.9f value: %10.9f%n", methodName, min, value);
     }
 
     public static double func(double x) {
