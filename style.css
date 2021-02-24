@@ -54,15 +54,23 @@ form {
 }
 
 .methods li {
-    border: #333333 2px solid;
+    border: gray 2px solid;
+    border-radius: 1rem;
     text-align: center;
     margin: 0 1rem;
     padding: 0 1rem;
 }
 
+.methods .active {
+    cursor: pointer;
+    background-color: rgba(75, 192, 192, 1);
+    color: bisque;
+}
+
 .methods li:hover {
     cursor: pointer;
     background-color: rgba(75, 192, 192, 1);
+    color: bisque;
 }
 
 /* slider */

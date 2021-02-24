@@ -33,13 +33,9 @@ const myChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 ticks: {
-                    suggestedMin: 40,
-                    stepSize: 0.1
+                    min: 0.5,
+                    stepSize: 0.25
                 },
-                range: {
-                    start: -5,
-                    end: 5,
-                }
             }]
         }
     }
