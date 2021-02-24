@@ -17,7 +17,10 @@
         <div class="interval">Данный интервал : [ 0.5 ; 4 ]</div>
     </div>
 
+    <canvas id="myChart"></canvas>
+
     <div class="methods">
+        <div class="methodsTitle">Выберите метод</div>
         <ul>
             <li>Метод дихотомии</li>
             <li>Метод золотого сечения</li>
@@ -28,7 +31,7 @@
     </div>
 
     <form id="form" method="post">
-        <label for="l">Choose accuracy = 10^-</label>
+        <label for="l">Выберите точность 10^-</label>
         <!--<input type="text" maxlength="1" id="l" class="accuracy"/>-->
         <span id="l-value"></span>
         <input type="range" min="1" max="8" value="4" class="slider" id="l">
@@ -38,5 +41,7 @@
 </div>
 <script src="js/main.js" type="module"></script>
 <script src="js/fibonacci.js" type="module"></script>
+<script src="node_modules/chart.js/dist/Chart.min.js"></script>
+<script src="js/chart.js" type="module"></script>
 </body>
 </html>

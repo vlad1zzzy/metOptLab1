@@ -18,6 +18,8 @@ html {
     min-width: 600px;
     max-width: 1280px;
     margin: 0 auto;
+
+    background-color: beige;
 }
 
 .page {
@@ -37,6 +39,56 @@ form {
     display: flex;
     justify-content: center;
     margin: 1rem 0;
+}
+
+.methods .methodsTitle {
+    margin: 1rem;
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.methods > ul {
+    display: flex;
+    justify-content: space-between;
+    list-style-type: none;
+}
+
+.methods li {
+    border: #333333 2px solid;
+    text-align: center;
+    margin: 0 1rem;
+    padding: 0 1rem;
+}
+
+.methods li:hover {
+    cursor: pointer;
+    background-color: rgba(75, 192, 192, 1);
+}
+
+/* slider */
+
+.slider {
+    background-color: red;
+}
+
+.slider {
+    -webkit-appearance: none;
+    height: 15px;
+    border-radius: 5px;
+    background: rgba(75, 192, 192, 1);
+    outline: none;
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background: #ffd88d;
+    cursor: pointer;
 }
 
 /* datatable */
