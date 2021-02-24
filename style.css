@@ -20,6 +20,8 @@ html {
     margin: 0 auto;
 
     background-color: beige;
+
+    scroll-behavior: smooth;
 }
 
 .page {

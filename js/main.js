@@ -78,6 +78,13 @@ btn.addEventListener("click", function () {
     }
 })
 
+btn.addEventListener("click", function() {
+    document.getElementById("intervals").scrollIntoView({
+        block: "center",
+        behavior: "smooth",
+    })
+})
+
 // CREATING TABLE
 const dataTable = document.querySelector(".datatable")
 const tableHeaders = ["k", "a", "b", "b - a", "x1", "x2", "f1", "f2"]
