@@ -10,8 +10,8 @@ const fibs = [
     433494437, 701408733, 1134903170, 1836311903
 ];
 
-function fibonacci(a, b, l, eps) {
-    let anchor = (b - a) / l;
+function fibonacci(a, b, eps) {
+    let anchor = (b - a) / eps;
     let n = -1;
     for (let i = 2; i < fibs.length; i++) {
         if (fibs[i] > anchor) {

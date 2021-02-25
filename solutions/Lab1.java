@@ -1,15 +1,16 @@
 package solutions;
 
-import java.util.List;
-
 public class Lab1 {
     public static void main(String[] args) {
-        double fib = Fibonacci.findMin(0.5, 4, 0.000001, 0.00001);
-        double gol = GoldenSection.findMin(0.5, 4, 0.1);
+        double fib = Fibonacci.findMin(0.5, 4, 0.00001);
+        double gol = GoldenSection.findMin(0.5, 4, 0.00001);
+        double par = Parabola.findMin(0.5, 4, 0.0001);
         double minFib = func(fib);
         double minGol = func(gol);
+        double minPar = func(par);
         printData("Fibonacci", fib, minFib);
         printData("GoldenSection", gol, minGol);
+        printData("Parabola", par, minPar);
     }
 
     public static void printData(final String methodName, final double min, final double value) {
@@ -20,7 +21,7 @@ public class Lab1 {
         return x - Math.log(x);
     }
 
-    public static String toJson(List<Stat> stats) {
+    /*public static String toJson(List<Stat> stats) {
         StringBuilder s = new StringBuilder();
         s.append("[ \n");
         for (Stat stat : stats) {
@@ -37,5 +38,5 @@ public class Lab1 {
         }
         s.append(" ]");
         return s.toString();
-    }
+    }*/
 }

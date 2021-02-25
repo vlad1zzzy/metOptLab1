@@ -41,11 +41,11 @@ methods.forEach((method) => {
 
 
 // CHOSE ACCURACY
-const lSlider = document.getElementById("l");
-const lValue = document.getElementById("l-value");
-lValue.innerHTML = lSlider.value;
-lSlider.oninput = function () {
-    lValue.innerHTML = this.value;
+const epsSlider = document.getElementById("eps");
+const epsValue = document.getElementById("eps-value");
+epsValue.innerHTML = epsSlider.value;
+epsSlider.oninput = function () {
+    epsValue.innerHTML = this.value;
 }
 
 const btn = document.querySelector("button")
@@ -56,16 +56,14 @@ btn.addEventListener("click", function () {
         dataTable.removeChild(dataTable.firstChild)
         stats.length = 0
     }
-    const lInput = document.getElementById("l")
-    const l = lInput.value
-    if (notValidInput(l)) {
-        lInput.value = ""
-        alert("Invalid l value")
+    const eps = epsValue.innerHTML
+    if (notValidInput(eps)) {
+        epsSlider.value = ""
+        alert("Invalid eps value")
     } else if (typeof chosenFunction !== "function") {
         alert("No such method yet")
     } else {
-        //fibonacci(0.5, 4, Math.pow(10, -l), Math.pow(10, -4))
-        const res = chosenFunction(a, b, Math.pow(10, -l), Math.pow(10, -4))
+        const res = chosenFunction(a, b, Math.pow(10, -eps))
         removeData()
         createTable()
         dotMin.innerText = res;

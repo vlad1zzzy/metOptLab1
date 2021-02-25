@@ -3,6 +3,9 @@ package solutions;
 import java.util.ArrayList;
 import java.util.List;
 
+import static solutions.Lab1.func;
+import static java.lang.Math.abs;
+
 public class Fibonacci {
     public static List<Stat> result = new ArrayList<>();
 
@@ -14,8 +17,8 @@ public class Fibonacci {
             433494437, 701408733, 1134903170, 1836311903
     };
 
-    public static double findMin(double a, double b, double l, final double eps) {
-        double anchor = (b - a) / l;
+    public static double findMin(double a, double b, final double eps) {
+        double anchor = (b - a) / eps;
         int n = -1;
         for (int i = 2; i < fibs.length; i++) {
             if (fibs[i] > anchor) {
@@ -32,8 +35,8 @@ public class Fibonacci {
         double x1 = a + ((fibs[n - 2] * 1.0) / fibs[n]) * (b - a);
         double x2 = a + ((fibs[n - 1] * 1.0) / fibs[n]) * (b - a);
         for (int k = 1; k < n - 1; k++) {
-            double f1 = Lab1.func(x1);
-            double f2 = Lab1.func(x2);
+            double f1 = func(x1);
+            double f2 = func(x2);
             // System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
             //         k, a, b, b - a, x1, x2, f1, f2);
             result.add(new Stat(k, a, b, b - a, x1, x2, f1, f2));
@@ -48,7 +51,7 @@ public class Fibonacci {
             }
         }
         x2 = x1 + eps;
-        if (Math.abs(Lab1.func(x1) - Lab1.func(x2)) < eps) {
+        if (abs(func(x1) - func(x2)) < eps) {
             a = x1;
         } else {
             b = x2;

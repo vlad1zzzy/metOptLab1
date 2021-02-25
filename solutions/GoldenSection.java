@@ -6,7 +6,7 @@ import static solutions.Lab1.func;
 
 public class GoldenSection {
 
-    static double findMin(double a, double b, double eps) {
+    static double findMin(double a, double b, final double eps) {
         /*System.out.printf("%11s %11s %11s %11s %11s %11s %11s%n",
                 "a", "b", "b - a", "x1", "x2", "f1", "f2");*/
         final double phi = (1 + sqrt(5)) / 2;
@@ -17,8 +17,8 @@ public class GoldenSection {
         double f2 = func(x2);
         int k = 1;
         do {
-            System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
-                    k, a, b, b - a, x1, x2, f1, f2);
+            /*System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
+                    k, a, b, b - a, x1, x2, f1, f2);*/
             if (f1 < f2) {
                 b = x2;
                 x2 = x1;
