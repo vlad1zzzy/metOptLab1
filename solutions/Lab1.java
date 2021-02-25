@@ -4,7 +4,7 @@ public class Lab1 {
     public static void main(String[] args) {
         double fib = Fibonacci.findMin(0.5, 4, 0.00001);
         double gol = GoldenSection.findMin(0.5, 4, 0.00001);
-        double par = Parabola.findMin(0.5, 4, 0.0001);
+        double par = Parabola.findMin(0.5, 4, 0.1);
         double minFib = func(fib);
         double minGol = func(gol);
         double minPar = func(par);

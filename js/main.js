@@ -1,6 +1,8 @@
 import {fibonacci} from "./fibonacci.js";
 import {golden} from "./golden.js";
+import {parabola} from "./parabola.js";
 import {addData, removeData} from "./intervals.js";
+import {addDataParabola, removeDataParabola, drawParabola} from "./chart.js";
 
 export {stats, func}
 const stats = []
@@ -15,7 +17,7 @@ const functions = {
     //dichotomy: dichotomy,
     golden: golden,
     fibonacci: fibonacci,
-    //parabola: parabola,
+    parabola: parabola,
     //brent: brent,
 }
 
@@ -32,11 +34,21 @@ methods.forEach((method) => {
         chosenFunction = functions[chosenFunctionName];
         method.classList.add("active")
 
+        if (method.id !== "parabola") {
+            removeDataParabola()
+        }
+
         while (dataTable.firstChild) {
             dataTable.removeChild(dataTable.firstChild)
             stats.length = 0
         }
     })
+})
+
+// steps parabola
+const steps = document.getElementById("step")
+steps.addEventListener("change", function (e) {
+    drawParabola(e.target.value)
 })
 
 
@@ -63,12 +75,19 @@ btn.addEventListener("click", function () {
     } else if (typeof chosenFunction !== "function") {
         alert("No such method yet")
     } else {
-        const res = chosenFunction(a, b, Math.pow(10, -eps))
+        removeDataParabola()
         removeData()
+        const res = chosenFunction(a, b, Math.pow(10, -eps))
+        if (chosenFunctionName === "parabola") {
+            addDataParabola()
+            drawParabola(1)
+            steps.value = 1
+        } else {
+            addData()
+        }
         createTable()
         dotMin.innerText = res;
         funcMin.innerText = func(res)
-        addData()
     }
 
     function notValidInput(str) {
@@ -76,17 +95,27 @@ btn.addEventListener("click", function () {
     }
 })
 
-btn.addEventListener("click", function() {
-    document.getElementById("intervals").scrollIntoView({
-        block: "center",
-        behavior: "smooth",
-    })
+btn.addEventListener("click", function () {
+    if (chosenFunctionName === "parabola") {
+        document.getElementById("steps").classList.remove("disabledInput")
+        document.getElementById("myChart").scrollIntoView({
+            block: "center",
+            behavior: "smooth",
+        })
+    } else {
+        document.getElementById("intervals").scrollIntoView({
+            block: "center",
+            behavior: "smooth",
+        })
+    }
 })
 
 // CREATING TABLE
 const dataTable = document.querySelector(".datatable")
 const tableHeaders = ["k", "a", "b", "b - a", "x1", "x2", "f1", "f2"]
+const tableHeadersParabola = ["k", "a0", "a1", "a2", "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi"]
 const createTable = () => {
+    const headers = (chosenFunctionName === "parabola") ? tableHeadersParabola : tableHeaders;
     let table = document.createElement('table')
 
     let tableHead = document.createElement('thead')
@@ -95,7 +124,7 @@ const createTable = () => {
     let tableHeaderRow = document.createElement('tr')
     tableHeaderRow.className = 'tableHeaderRow'
 
-    tableHeaders.forEach(header => {
+    headers.forEach(header => {
         let scoreHeader = document.createElement('th')
         scoreHeader.innerText = header
         tableHeaderRow.append(scoreHeader)

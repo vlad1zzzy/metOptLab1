@@ -37,6 +37,10 @@ h1, h2, h3 {
     text-align: center;
 }
 
+.disabledInput {
+    display: none;
+}
+
 
 .methods .methodsTitle {
     margin: 1rem;
