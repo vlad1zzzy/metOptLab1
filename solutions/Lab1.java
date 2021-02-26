@@ -5,7 +5,7 @@ import java.util.List;
 public class Lab1 {
     public static void main(String[] args) {
         final double eps = 0.00001;
-        List<MinimizationMethod> methods = List.of(new Brent(), new Fibonacci(), new GoldenSection(), new Parabola());
+        List<MinimizationMethod> methods = List.of(new Brent(), new Fibonacci(), new GoldenSection(), new Parabola(), new Dichotomy());
         methods.forEach(it -> solve(it, 0.5, 4, eps));
     }
 
