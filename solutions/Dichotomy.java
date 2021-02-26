@@ -23,7 +23,6 @@ public class Dichotomy implements MinimizationMethod {
             } else {
                 a = x1;
             }
-            System.out.println(a + " " + b);
         } while ((b - a) / 2 >= eps);
         return (a + b) / 2;
     }
