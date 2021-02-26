@@ -4,8 +4,10 @@ export {parabola}
 
 function parabola(a, b, eps) {
     let k = 1;
-    let x1 = a, x2 = (a + b) / 2, x3 = b;
-    let f1 = func(x1), f2 = func(x2), f3 = func(x3);
+    let x1 = a, x2, x3 = b;
+    let f1 = func(x1), f2, f3 = func(x3);
+    x2 = f1 < f3 ? a + eps : b - eps;
+    f2 = func(x2);
     let a0, a1, a2, xi, fi, x;
     a0 = f1;
     a1 = getA1(a0, x1, x2, f2);
@@ -46,7 +48,7 @@ function parabola(a, b, eps) {
         xi = x;
         fi = func(x);
         k++;
-    } while (k < 20);
+    } while (true);
     return x;
 }
 
