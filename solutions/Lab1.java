@@ -1,19 +1,18 @@
 package solutions;
 
+import java.util.List;
+
 public class Lab1 {
     public static void main(String[] args) {
-        double fib = Fibonacci.findMin(0.5, 4, 0.00001);
-        double gol = GoldenSection.findMin(0.5, 4, 0.00001);
-        double par = Parabola.findMin(0.5, 4, 0.00001);
-        double bre = Brent.findMin(0.5,4,0.00001);
-        double minFib = func(fib);
-        double minGol = func(gol);
-        double minPar = func(par);
-        double minBre = func(bre);
-        printData("Fibonacci", fib, minFib);
-        printData("GoldenSection", gol, minGol);
-        printData("Parabola", par, minPar);
-        printData("Brent",bre, minBre);
+        final double eps = 0.00001;
+        List<MinimizationMethod> methods = List.of(new Brent(), new Fibonacci(), new GoldenSection(), new Parabola());
+        methods.forEach(it -> solve(it, 0.5, 4, eps));
+    }
+
+    public static void solve(MinimizationMethod method, double a, double b, double eps) {
+        double min = method.findMin(a, b, eps);
+        double value = func(min);
+        printData(method.getClass().getSimpleName(), min, value);
     }
 
     public static void printData(final String methodName, final double min, final double value) {

@@ -3,8 +3,8 @@ package solutions;
 import static java.lang.Math.abs;
 import static solutions.Lab1.func;
 
-public class Parabola {
-    static double findMin(double a, double b, final double eps) {
+public class Parabola implements MinimizationMethod{
+    public double findMin(double a, double b, final double eps) {
         /*System.out.printf("%11s %11s %11s %11s %11s %11s %11s %11s %11s %11s %11s%n",
                 "a0", "a1", "a2", "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi");*/
         int k = 1;

@@ -6,7 +6,7 @@ import java.util.List;
 import static solutions.Lab1.func;
 import static java.lang.Math.abs;
 
-public class Fibonacci {
+public class Fibonacci implements MinimizationMethod{
     public static List<Stat> result = new ArrayList<>();
 
     public static final int[] fibs = new int[]{
@@ -17,7 +17,7 @@ public class Fibonacci {
             433494437, 701408733, 1134903170, 1836311903
     };
 
-    public static double findMin(double a, double b, final double eps) {
+    public double findMin(double a, double b, final double eps) {
         double anchor = (b - a) / eps;
         int n = -1;
         for (int i = 2; i < fibs.length; i++) {

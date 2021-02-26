@@ -4,9 +4,8 @@ import static java.lang.Math.abs;
 import static java.lang.Math.sqrt;
 import static solutions.Lab1.func;
 
-public class GoldenSection {
-
-    static double findMin(double a, double b, final double eps) {
+public class GoldenSection implements MinimizationMethod {
+    public double findMin(double a, double b, final double eps) {
         /*System.out.printf("%11s %11s %11s %11s %11s %11s %11s%n",
                 "a", "b", "b - a", "x1", "x2", "f1", "f2");*/
         final double phi = (1 + sqrt(5)) / 2;
