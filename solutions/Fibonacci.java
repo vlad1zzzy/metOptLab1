@@ -27,7 +27,7 @@ public class Fibonacci implements MinimizationMethod{
             }
         }
         if (n == -1) {
-            System.out.println("Cannot find F for this data. Choose different 'l'.");
+            System.out.println("Cannot find F for this data. Choose different 'eps'.");
             return -1;
         }
         //System.out.printf("%11s %11s %11s %11s %11s %11s %11s%n",

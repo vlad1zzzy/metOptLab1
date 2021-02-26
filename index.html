@@ -19,12 +19,10 @@
 
     <canvas id="myChart"></canvas>
 
-    <form id="steps" method="post" class="disabledInput">
-        <label for="step">Шаги</label>
-        <span id="step-value"></span>
-        <input type="range" min="1" max="12" value="1" class="slider" id="step">
-        <!--<button type="button" class="btn"><span>Рассчитать</span></button>-->
-    </form>
+    <div class="arrows disabled">
+        <button type="button" class="prev disabled">&larr;</button>
+        <button type="button" class="next">&rarr;</button>
+    </div>
 
     <div class="methods">
         <div class="methodsTitle">Выберите метод</div>
@@ -60,6 +58,7 @@
 <script src="js/fibonacci.js" type="module"></script>
 <script src="js/parabola.js" type="module"></script>
 <script src="js/chart.js" type="module"></script>
+<script src="js/brent.js" type="module"></script>
 <!--<script src="node_modules/chart.js/dist/Chart.min.js"></script>-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <script src="js/intervals.js" type="module"></script>

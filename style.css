@@ -24,9 +24,6 @@ html {
     scroll-behavior: smooth;
 }
 
-.page {
-}
-
 h1, h2, h3 {
     margin: 0.3rem auto;
     text-align: center;
@@ -39,6 +36,30 @@ h1, h2, h3 {
 
 .disabledInput {
     display: none;
+}
+
+.arrows {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.arrows.disabled {
+    display: none;
+}
+
+.next,
+.prev {
+    background: none;
+    border: none;
+    margin: 0 10px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.next.disabled,
+.prev.disabled {
+    opacity: .25;
+    pointer-events: none;
 }
 
 

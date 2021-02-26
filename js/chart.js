@@ -41,7 +41,7 @@ function addDataParabola() {
             function: function (x) {
                 return a0 + a1 * (x - x1) + a2 * (x - x1) * (x - x2)
             },
-            borderColor: "rgba(255, 206, " + 10 * k + ", 1)",
+            borderColor: "rgba(255, 186, " + 20 * k + ", 1)",
             data: [],
             fill: false
         })

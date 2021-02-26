@@ -1,6 +1,8 @@
-import {fibonacci} from "./fibonacci.js";
+import {dichotomy} from "./dichotomy.js";
 import {golden} from "./golden.js";
+import {fibonacci} from "./fibonacci.js";
 import {parabola} from "./parabola.js";
+import {brent} from "./brent.js";
 import {addData, removeData} from "./intervals.js";
 import {addDataParabola, removeDataParabola, drawParabola} from "./chart.js";
 
@@ -14,16 +16,15 @@ const func = function (x) {
 }
 
 const functions = {
-    //dichotomy: dichotomy,
+    dichotomy: dichotomy,
     golden: golden,
     fibonacci: fibonacci,
     parabola: parabola,
-    //brent: brent,
+    brent: brent,
 }
 
 let chosenFunction = functions.fibonacci;
 let chosenFunctionName = "fibonacci"
-
 
 // CHOSE METHODS
 const methods = document.querySelectorAll(".methods li")
@@ -31,11 +32,12 @@ methods.forEach((method) => {
     method.addEventListener("click", function (e) {
         document.getElementById(chosenFunctionName).classList.remove("active")
         chosenFunctionName = e.target.id
-        chosenFunction = functions[chosenFunctionName];
+        chosenFunction = functions[chosenFunctionName]
         method.classList.add("active")
 
         if (method.id !== "parabola") {
             removeDataParabola()
+            arrows.classList.add("disabled")
         }
 
         while (dataTable.firstChild) {
@@ -43,12 +45,6 @@ methods.forEach((method) => {
             stats.length = 0
         }
     })
-})
-
-// steps parabola
-const steps = document.getElementById("step")
-steps.addEventListener("change", function (e) {
-    drawParabola(e.target.value)
 })
 
 
@@ -60,7 +56,30 @@ epsSlider.oninput = function () {
     epsValue.innerHTML = this.value;
 }
 
-const btn = document.querySelector("button")
+// STEPS
+const arrows = document.querySelector(".arrows");
+const prev = document.querySelector(".prev");
+const next = document.querySelector(".next");
+let step;
+prev.addEventListener("click", function () {
+    next.classList.remove("disabled")
+    if (step === 1) {
+        prev.classList.add("disabled")
+    } else {
+        drawParabola(--step)
+    }
+})
+next.addEventListener("click", function () {
+    prev.classList.remove("disabled")
+    if (step === stats.length) {
+        next.classList.add("disabled")
+    } else {
+        drawParabola(++step)
+    }
+})
+
+// SUBMIT
+const btn = document.querySelector(".btn")
 const funcMin = document.getElementById("func-min")
 const dotMin = document.getElementById("dot-min")
 btn.addEventListener("click", function () {
@@ -81,7 +100,9 @@ btn.addEventListener("click", function () {
         if (chosenFunctionName === "parabola") {
             addDataParabola()
             drawParabola(1)
-            steps.value = 1
+            step = 1
+            prev.classList.add("disabled")
+            next.classList.remove("disabled")
         } else {
             addData()
         }
@@ -97,7 +118,7 @@ btn.addEventListener("click", function () {
 
 btn.addEventListener("click", function () {
     if (chosenFunctionName === "parabola") {
-        document.getElementById("steps").classList.remove("disabledInput")
+        arrows.classList.remove("disabled")
         document.getElementById("myChart").scrollIntoView({
             block: "center",
             behavior: "smooth",
@@ -114,8 +135,19 @@ btn.addEventListener("click", function () {
 const dataTable = document.querySelector(".datatable")
 const tableHeaders = ["k", "a", "b", "b - a", "x1", "x2", "f1", "f2"]
 const tableHeadersParabola = ["k", "a0", "a1", "a2", "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi"]
+const tableHeadersBrent = ["k", "a", "b", "x", "w", "v", "fx", "fw", "fv"]
 const createTable = () => {
-    const headers = (chosenFunctionName === "parabola") ? tableHeadersParabola : tableHeaders;
+    let headers;
+    switch (chosenFunctionName) {
+        case "parabola":
+            headers = tableHeadersParabola;
+            break;
+        case "brent":
+            headers = tableHeadersBrent;
+            break;
+        default:
+            headers = tableHeaders
+    }
     let table = document.createElement('table')
 
     let tableHead = document.createElement('thead')
