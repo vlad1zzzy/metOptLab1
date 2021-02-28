@@ -6,7 +6,6 @@ public class Lab1 {
 
     public static void main(String[] args) {
         List<Double> e = List.of(0.1, 0.001, 0.0001, 0.00001, 0.000001, 0.0000001, 0.00000001);
-
         List<MinimizationMethod> methods = List.of(new Dichotomy(), new GoldenSection(), new Fibonacci(), new Parabola(), new Brent());
         e.forEach(eps -> {
             System.out.println(eps);

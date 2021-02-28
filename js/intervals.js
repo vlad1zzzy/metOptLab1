@@ -59,9 +59,9 @@ const intervals = new Chart(inter, {
         scales: {
             yAxes: [{
                 ticks: {
-                    min: 0.7,
-                    max: 1.3,
-                    stepSize: 0.01
+                    min: 0.0,
+                    max: 4.0,
+                    stepSize: 0.1
                 },
             }]
         }
