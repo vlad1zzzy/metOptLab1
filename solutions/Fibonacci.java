@@ -6,7 +6,7 @@ import java.util.List;
 import static solutions.Lab1.func;
 import static java.lang.Math.abs;
 
-public class Fibonacci implements MinimizationMethod{
+public class Fibonacci implements MinimizationMethod {
     public static List<Stat> result = new ArrayList<>();
 
     public static final int[] fibs = new int[]{
@@ -27,19 +27,14 @@ public class Fibonacci implements MinimizationMethod{
             }
         }
         if (n == -1) {
-            System.out.println("Cannot find F for this data. Choose different 'eps'.");
+            System.err.println("Cannot find F for this data. Choose different 'eps'.");
             return -1;
         }
-        /*System.out.printf("%12s %12s %12s %12s %12s %12s %12s %12s%n",
-                "a", "b", "b - a", "ratio" ,"x1", "x2", "f1", "f2");
-        double start = a, end = b;*/
         double x1 = a + ((fibs[n - 2] * 1.0) / fibs[n]) * (b - a);
         double x2 = a + ((fibs[n - 1] * 1.0) / fibs[n]) * (b - a);
         for (int k = 1; k < n - 1; k++) {
             double f1 = func(x1);
             double f2 = func(x2);
-            /*System.out.printf("%2d) %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f%n",
-                    k, a, b, b - a, (b - a) / (end - start) ,x1, x2, f1, f2);*/
             result.add(new Stat(k, a, b, b - a, x1, x2, f1, f2));
             if (f1 > f2) {
                 a = x1;
@@ -57,9 +52,6 @@ public class Fibonacci implements MinimizationMethod{
         } else {
             b = x2;
         }
-
-        //System.out.println(Lab1.toJson(result));
-
         return (a + b) / 2;
     }
 }
