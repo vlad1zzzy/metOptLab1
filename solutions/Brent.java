@@ -4,14 +4,11 @@ import static java.lang.Math.*;
 import static solutions.Lab1.func;
 
 public class Brent implements MinimizationMethod {
-    private double eps;
-
     @Override
     public double findMin(double a, double c, final double eps) {
         /*System.out.printf("%11s %12s %12s %12s %12s %12s %12s %11s%n",
                 "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi");*/
         int k = 1;
-        this.eps = eps;
         final double phi = (3 - sqrt(5)) / 2;
         double x2, x1, x3, xi = 0, f2, f1, f3, fi, d, e, g, tol;
         boolean accepted;

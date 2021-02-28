@@ -8,9 +8,9 @@ public class Parabola implements MinimizationMethod {
         /*System.out.printf("%11s %12s %12s %12s %12s %12s %12s %11s%n",
                 "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi");*/
         int k = 1;
-        double x1 = a, x2, x3 = b;
+        double x1 = a - eps, x2, x3 =b + eps;
         double f1 = func(x1), f2, f3 = func(x3);
-        x2 = f1 < f3 ? a + eps : b - eps;
+        x2 = f1 < f3 ? a : b ;
         f2 = func(x2);
         double xi, fi, x;
         xi = minOfParabola(x1, x2, x3, f1, f2, f3);

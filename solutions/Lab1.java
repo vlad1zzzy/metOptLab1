@@ -9,7 +9,7 @@ public class Lab1 {
         List<MinimizationMethod> methods = List.of(new Dichotomy(), new GoldenSection(), new Fibonacci(), new Parabola(), new Brent());
         e.forEach(eps -> {
             System.out.println(eps);
-            methods.forEach(it -> solve(it, 0.5, 4, eps));
+            methods.forEach(it -> solve(it, 0.5, 1, eps));
             System.out.println();
         });
     }
