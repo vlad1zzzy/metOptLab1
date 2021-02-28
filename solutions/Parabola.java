@@ -12,11 +12,8 @@ public class Parabola implements MinimizationMethod {
         double f1 = func(x1), f2, f3 = func(x3);
         x2 = f1 < f3 ? a + eps : b - eps;
         f2 = func(x2);
-        double a0, a1, a2, xi, fi, x;
-        a0 = f1;
-        a1 = (f2 - a0) / (x2 - x1);
-        a2 = ((f3 - f1) / (x3 - x1) - a1) / (x3 - x2);
-        xi = 0.5 * (x1 + x2 - a1 / a2);
+        double xi, fi, x;
+        xi = minOfParabola(x1, x2, x3, f1, f2, f3);
         fi = func(xi);
         do {
             /*System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
@@ -43,10 +40,8 @@ public class Parabola implements MinimizationMethod {
                     f3 = fi;
                 }
             }
-            a0 = f1;
-            a1 = (f2 - a0) / (x2 - x1);
-            a2 = ((f3 - f1) / (x3 - x1) - a1) / (x3 - x2);
-            x = 0.5 * (x1 + x2 - a1 / a2);
+
+            x = minOfParabola(x1, x2, x3, f1, f2, f3);
             if (abs(x - xi) < eps) {
                 break;
             }
@@ -56,5 +51,13 @@ public class Parabola implements MinimizationMethod {
         } while (true);
 
         return x;
+    }
+
+    static double minOfParabola(double x1, double x2, double x3, double f1, double f2, double f3) {
+        double a0, a1, a2;
+        a0 = f1;
+        a1 = (f2 - a0) / (x2 - x1);
+        a2 = ((f3 - f1) / (x3 - x1) - a1) / (x3 - x2);
+        return 0.5 * (x1 + x2 - a1 / a2);
     }
 }

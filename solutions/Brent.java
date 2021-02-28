@@ -3,37 +3,39 @@ package solutions;
 import static java.lang.Math.*;
 import static solutions.Lab1.func;
 
-public class Brent implements MinimizationMethod{
+public class Brent implements MinimizationMethod {
+    private double eps;
+
     @Override
-    public double findMin(double a, double b, final double eps) {
+    public double findMin(double a, double c, final double eps) {
+        this.eps = eps;
         final double k = (3 - sqrt(5)) / 2;
         double x, w, v, u = 0, fx, fw, fv, fu, d, e, g, tol;
-        boolean t;
-        x = w = v = a + k * (b - a);
+        boolean accepted;
+        x = w = v = a + k * (c - a);
         fx = fw = fv = func(x);
-        d = e = b - a;
+        d = e = c - a;
         do {
-            t = false;
+            accepted = false;
             g = e;
             e = d;
             tol = eps * abs(x) + eps / 10;
-            if (abs(x - (a + b) / 2) + (b - a) / 2 <= 2 * tol) {
+            if (abs(x - (a + c) / 2) + (c - a) / 2 <= 2 * tol) {
                 break;
             }
-            if (x != w && x != v && w != v && fx != fw && fx != fv && fv != fw) {
-                u = x - ((x - w) * (x - w) * (fx - fv) - (x - v) * (x - v) * (x - w))
-                        / (2 * ((x - w) * (fx - fv) - (x - v) * (fx - fw)));
-                if (a <= u && u <= b && abs(u - x) < g / 2) {
-                    t = true;
-                    if (u - a < 2 * tol || b - u < 2 * tol) {
-                        u = x - signum(x - (a + b) / 2) * tol;
+            if (threeNotEquals(x, v, w, eps)) {
+                u = Parabola.minOfParabola(w, x, v, fw, fx, fv);
+                if (a <= u && u <= c && abs(u - x) < g / 2) {
+                    accepted = true;
+                    if (u - a < 2 * tol || c - u < 2 * tol) {
+                        u = x - signum(x - (a + c) / 2) * tol;
                     }
                 }
             }
-            if (!t) {
-                if (x < (a + b) / 2) {
-                    u = x + k * (b - x);
-                    e = b - x;
+            if (!accepted) {
+                if (x < (a + c) / 2) {
+                    u = x + k * (c - x);
+                    e = c - x;
                 } else {
                     u = x - k * (x - a);
                     e = x - a;
@@ -48,7 +50,7 @@ public class Brent implements MinimizationMethod{
                 if (u >= x) {
                     a = x;
                 } else {
-                    b = x;
+                    c = x;
                 }
                 v = w;
                 w = x;
@@ -58,16 +60,16 @@ public class Brent implements MinimizationMethod{
                 fx = fu;
             } else {
                 if (u >= x) {
-                    b = u;
+                    c = u;
                 } else {
                     a = u;
                 }
-                if (fu <= fw || w == x) {
+                if (fu <= fw || equals(w, x, eps)) {
                     v = w;
                     w = u;
                     fv = fw;
                     fw = fu;
-                } else if (fu <= fv || v == x || v == w) {
+                } else if (fu <= fv || equals(v, x, eps) || equals(v, w, eps)) {
                     v = u;
                     fv = fu;
                 }
@@ -75,4 +77,7 @@ public class Brent implements MinimizationMethod{
         } while (true);
         return x;
     }
+
+
 }
+//x^2, x1 = 0.1, x2 = -0.1;
