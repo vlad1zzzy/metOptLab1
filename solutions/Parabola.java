@@ -5,8 +5,8 @@ import static solutions.Lab1.func;
 
 public class Parabola implements MinimizationMethod {
     public double findMin(double a, double b, final double eps) {
-        /*System.out.printf("%11s %11s %11s %11s %11s %11s %11s %11s %11s %11s %11s%n",
-                "a0", "a1", "a2", "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi");*/
+        /*System.out.printf("%11s %12s %12s %12s %12s %12s %12s %11s%n",
+                "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi");*/
         int k = 1;
         double x1 = a, x2, x3 = b;
         double f1 = func(x1), f2, f3 = func(x3);
@@ -16,8 +16,8 @@ public class Parabola implements MinimizationMethod {
         xi = minOfParabola(x1, x2, x3, f1, f2, f3);
         fi = func(xi);
         do {
-            /*System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
-                    k, a0, a1, a2, x1, x2, x3, f1, f2, f3, xi, fi);*/
+            /*System.out.printf("%2d) %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f%n",
+                    k, x1, x2, x3, f1, f2, f3, xi, fi);*/
             if (x1 < xi && xi < x2) {
                 if (fi >= f2) {
                     x1 = xi;

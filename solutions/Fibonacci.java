@@ -30,15 +30,16 @@ public class Fibonacci implements MinimizationMethod{
             System.out.println("Cannot find F for this data. Choose different 'eps'.");
             return -1;
         }
-        //System.out.printf("%11s %11s %11s %11s %11s %11s %11s%n",
-        //        "a", "b", "b - a", "x1", "x2", "f1", "f2");
+        /*System.out.printf("%12s %12s %12s %12s %12s %12s %12s %12s%n",
+                "a", "b", "b - a", "ratio" ,"x1", "x2", "f1", "f2");
+        double start = a, end = b;*/
         double x1 = a + ((fibs[n - 2] * 1.0) / fibs[n]) * (b - a);
         double x2 = a + ((fibs[n - 1] * 1.0) / fibs[n]) * (b - a);
         for (int k = 1; k < n - 1; k++) {
             double f1 = func(x1);
             double f2 = func(x2);
-            // System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
-            //         k, a, b, b - a, x1, x2, f1, f2);
+            /*System.out.printf("%2d) %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f%n",
+                    k, a, b, b - a, (b - a) / (end - start) ,x1, x2, f1, f2);*/
             result.add(new Stat(k, a, b, b - a, x1, x2, f1, f2));
             if (f1 > f2) {
                 a = x1;

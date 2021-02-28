@@ -8,76 +8,82 @@ public class Brent implements MinimizationMethod {
 
     @Override
     public double findMin(double a, double c, final double eps) {
+        /*System.out.printf("%11s %12s %12s %12s %12s %12s %12s %11s%n",
+                "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi");*/
+        int k = 1;
         this.eps = eps;
-        final double k = (3 - sqrt(5)) / 2;
-        double x, w, v, u = 0, fx, fw, fv, fu, d, e, g, tol;
+        final double phi = (3 - sqrt(5)) / 2;
+        double x2, x1, x3, xi = 0, f2, f1, f3, fi, d, e, g, tol;
         boolean accepted;
-        x = w = v = a + k * (c - a);
-        fx = fw = fv = func(x);
+        x2 = x1 = x3 = a + phi * (c - a);
+        f2 = f1 = f3 = func(x2);
         d = e = c - a;
         do {
             accepted = false;
             g = e;
             e = d;
-            tol = eps * abs(x) + eps / 10;
-            if (abs(x - (a + c) / 2) + (c - a) / 2 <= 2 * tol) {
+            tol = eps * abs(x2) + eps / 10;
+            if (abs(x2 - (a + c) / 2) + (c - a) / 2 <= 2 * tol) {
                 break;
             }
-            if (threeNotEquals(x, v, w, eps)) {
-                u = Parabola.minOfParabola(w, x, v, fw, fx, fv);
-                if (a <= u && u <= c && abs(u - x) < g / 2) {
+            if (threeNotEquals(x2, x3, x1, eps)) {
+                xi = Parabola.minOfParabola(x1, x2, x3, f1, f2, f3);
+                if (a <= xi && xi <= c && abs(xi - x2) < g / 2) {
                     accepted = true;
-                    if (u - a < 2 * tol || c - u < 2 * tol) {
-                        u = x - signum(x - (a + c) / 2) * tol;
+                    if (xi - a < 2 * tol || c - xi < 2 * tol) {
+                        xi = x2 - signum(x2 - (a + c) / 2) * tol;
                     }
                 }
             }
             if (!accepted) {
-                if (x < (a + c) / 2) {
-                    u = x + k * (c - x);
-                    e = c - x;
+                if (x2 < (a + c) / 2) {
+                    xi = x2 + phi * (c - x2);
+                    e = c - x2;
                 } else {
-                    u = x - k * (x - a);
-                    e = x - a;
+                    xi = x2 - phi * (x2 - a);
+                    e = x2 - a;
                 }
             }
-            if (abs(u - x) < tol) {
-                u = x + signum(u - x) * tol;
+            if (abs(xi - x2) < tol) {
+                xi = x2 + signum(xi - x2) * tol;
             }
-            d = abs(u - x);
-            fu = func(u);
-            if (fu <= fx) {
-                if (u >= x) {
-                    a = x;
+            d = abs(xi - x2);
+            fi = func(xi);
+            /*System.out.printf("%2d) %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f%n",
+                    k, x1, x2, x3, f1, f2, f3, xi, fi);*/
+            if (fi <= f2) {
+                if (xi >= x2) {
+                    a = x2;
                 } else {
-                    c = x;
+                    c = x2;
                 }
-                v = w;
-                w = x;
-                x = u;
-                fv = fw;
-                fw = fx;
-                fx = fu;
+                x3 = x1;
+                x1 = x2;
+                x2 = xi;
+                f3 = f1;
+                f1 = f2;
+                f2 = fi;
             } else {
-                if (u >= x) {
-                    c = u;
+                if (xi >= x2) {
+                    c = xi;
                 } else {
-                    a = u;
+                    a = xi;
                 }
-                if (fu <= fw || equals(w, x, eps)) {
-                    v = w;
-                    w = u;
-                    fv = fw;
-                    fw = fu;
-                } else if (fu <= fv || equals(v, x, eps) || equals(v, w, eps)) {
-                    v = u;
-                    fv = fu;
+                if (fi <= f1 || equals(x1, x2, eps)) {
+                    x3 = x1;
+                    x1 = xi;
+                    f3 = f1;
+                    f1 = fi;
+                } else if (fi <= f3 || equals(x3, x2, eps) || equals(x3, x1, eps)) {
+                    x3 = xi;
+                    f3 = fi;
                 }
             }
+            k++;
         } while (true);
-        return x;
+        return x2;
     }
 
 
 }
-//x^2, x1 = 0.1, x2 = -0.1;
+//x2^2, x1 = 0.1, x2 = -0.1;

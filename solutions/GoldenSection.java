@@ -6,8 +6,9 @@ import static solutions.Lab1.func;
 
 public class GoldenSection implements MinimizationMethod {
     public double findMin(double a, double b, final double eps) {
-        /*System.out.printf("%11s %11s %11s %11s %11s %11s %11s%n",
-                "a", "b", "b - a", "x1", "x2", "f1", "f2");*/
+        /*System.out.printf("%12s %12s %12s %12s %12s %12s %12s %12s%n",
+                "a", "b", "b - a", "ratio" ,"x1", "x2", "f1", "f2");
+        double start = a, end = b;*/
         final double phi = (1 + sqrt(5)) / 2;
         final double resPhi = 2 - phi;
         double x1 = a + resPhi * (b - a);
@@ -16,8 +17,8 @@ public class GoldenSection implements MinimizationMethod {
         double f2 = func(x2);
         int k = 1;
         do {
-            /*System.out.printf("%2d) %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f %10.9f%n",
-                    k, a, b, b - a, x1, x2, f1, f2);*/
+            /*System.out.printf("%2d) %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f %11.10f%n",
+                    k, a, b, b - a, (b - a) / (end - start) ,x1, x2, f1, f2);*/
             if (f1 < f2) {
                 b = x2;
                 x2 = x1;
