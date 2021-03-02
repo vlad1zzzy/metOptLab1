@@ -5,7 +5,7 @@ export {addDataParabola, removeDataParabola, drawParabola}
 const ctx = document.getElementById('myChart');
 
 let data = {
-    labels: Array.apply(null, {length: 50}).map(Number.call, Number).map(el => (0.1 * el).toFixed(2)),
+    labels: Array.apply(null, {length: 51}).map(Number.call, Number).map(el => (0.1 * el).toFixed(2)),
     datasets: [{
         label: "f(x) = x - ln(x)",
         function: function (x) {
@@ -76,10 +76,12 @@ const myChart = new Chart(ctx, {
     data: data,
     options: {
         isMain: true,
+        responsive:true,
         scales: {
             yAxes: [{
                 ticks: {
                     min: 0.5,
+                    max: 5,
                     stepSize: 0.25
                 },
             }]

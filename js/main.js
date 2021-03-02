@@ -44,6 +44,10 @@ methods.forEach((method) => {
             dataTable.removeChild(dataTable.firstChild)
             stats.length = 0
         }
+        method.scrollIntoView({
+            block: "center",
+            behavior: "smooth",
+        })
     })
 })
 
@@ -58,23 +62,25 @@ epsSlider.oninput = function () {
 
 // STEPS
 const arrows = document.querySelector(".arrows");
-const prev = document.querySelector(".prev");
-const next = document.querySelector(".next");
+const prev = arrows.querySelector(".prev");
+const next = arrows.querySelector(".next");
 let step;
 prev.addEventListener("click", function () {
-    next.classList.remove("disabled")
+    drawParabola(--step)
+    if (step  < stats.length) {
+        next.classList.remove("disabled")
+    }
     if (step === 1) {
         prev.classList.add("disabled")
-    } else {
-        drawParabola(--step)
     }
 })
 next.addEventListener("click", function () {
-    prev.classList.remove("disabled")
+    drawParabola(++step)
+    if (step > 1) {
+        prev.classList.remove("disabled")
+    }
     if (step === stats.length) {
         next.classList.add("disabled")
-    } else {
-        drawParabola(++step)
     }
 })
 
@@ -135,7 +141,7 @@ btn.addEventListener("click", function () {
 const dataTable = document.querySelector(".datatable")
 const tableHeaders = ["k", "a", "b", "b - a", "x1", "x2", "f1", "f2"]
 const tableHeadersParabola = ["k", "a0", "a1", "a2", "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi"]
-const tableHeadersBrent = ["k", "a", "b", "x", "w", "v", "fx", "fw", "fv"]
+const tableHeadersBrent = ["k", "a", "b", "x1", "x2", "x3", "f1", "f2", "f3", "xi", "fi"]
 const createTable = () => {
     let headers;
     switch (chosenFunctionName) {
